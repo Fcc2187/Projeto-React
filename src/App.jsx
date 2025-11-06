@@ -1,30 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Tasks from './components/Tasks.jsx'
 import AddTask from './components/AddTask.jsx'
 
 function App() {
 
-  const [tasks, setTasks] = useState([  
-  {
-    id: 1,
-    title: 'Estudar React',
-    description: 'Estudar os conceitos básicos de React',
-    isCompleted: false,
-  },
-  {
-    id: 2,
-    title: 'Fazer Exercícios',
-    description: 'Resolver os exercícios do curso de React',
-    isCompleted: false,
-  },
-  {
-    id: 3,
-    title: 'Ler Documentação',
-    description: 'Ler a documentação oficial do React',
-    isCompleted: false,
-  }
-]);
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem('tasks')) || []
+  );
+  
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
+
   function onTaskClick(taskId) {
     const newTasks = tasks.map((task) => {
       if (task.id === taskId) {
@@ -40,12 +28,22 @@ function App() {
     setTasks(newTasks);
   }
 
+  function onAddTaskSubmit(title, description) {
+    const newTask = {
+      id: tasks.length + 1,
+      title: title,
+      description: description,
+      isCompleted: false,
+    };
+    setTasks([...tasks, newTask]);
+  }
+
   return (
     <div className="w-screen h-screen bg-slate-500 flex justify-center p-6">
-      <div className="w-[500px]">
+      <div className="w-[500px] space-y-4">
         <h1 className="text-3xl text-slate-100 font-bold text-center">Gerenciador de Tarefas</h1>
-      
-      <AddTask />
+
+      <AddTask onAddTaskSubmit={onAddTaskSubmit} />
       <Tasks tasks={tasks} onTaskClick={onTaskClick} onDeleteTaskClick={onDeleteTaskClick} />
       </div>
     </div>
