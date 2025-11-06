@@ -1,8 +1,5 @@
-# React + Vite
+##Gerenciador de Tarefas Simples
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto de um aplicativo de lista de tarefas (To-Do List) construído com React. Ele permite ao usuário criar, gerenciar, completar e excluir tarefas. O projeto utiliza o LocalStorage do navegador para persistir os dados, garantindo que as tarefas não desapareçam ao recarregar a página.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este projeto foi desenvolvido como uma forma de praticar conceitos fundamentais do React, incluindo gerenciamento de estado com Hooks, roteamento e estilização com Tailwind CSS.
